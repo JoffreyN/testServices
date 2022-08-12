@@ -1,0 +1,31 @@
+{% load static %} 
+<link rel="stylesheet" type="text/css" href="{%static 'css/account.css'%}"/>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'icons/32.ico' %}" rel="icon" type="image/x-ico">
+    <title>创建用户 - TestServices</title>
+</head>
+<body>
+<div class="admin-ht">
+	<div class="adminBord">
+		<h2>创建用户</h2>
+		<form action="" method="post">
+		    {% csrf_token %}
+
+		    <input class="input" type="text" name="username" placeholder="用户名">
+		    <input class="input" type="text" name="password" value="123456">
+		    <input class="submit" type="submit" value="创建">
+		</form>
+		<a href="/index"><button class="submit">返回</button></a>
+		{% if alert_msg %}
+		  <script>
+		    alert('{{ alert_msg }}');
+		  </script>
+		{% endif %}
+
+	</div>
+</div>
+</body>
+</html>

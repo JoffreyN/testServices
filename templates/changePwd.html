@@ -1,0 +1,36 @@
+{% load static %} 
+<link rel="stylesheet" type="text/css" href="{%static 'css/account.css'%}"/>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'icons/32.ico' %}" rel="icon" type="image/x-ico">
+    <title>修改密码 - TestServices</title>
+</head>
+<body>
+<div class="admin-ht">
+	<div class="adminBord">
+		<h2>修改密码</h2>
+		<form action="" method="post">
+		    {% csrf_token %}
+
+		    <input class="input" type="password" name="old_password" placeholder="旧密码" required="required">
+		    <input class="input" type="password" name="new_password" placeholder="新密码" required="required">
+		    <input class="input" type="password" name="new_password2" placeholder="确认密码" required="required">
+		    <input class="submit" type="submit" value="提交">
+		</form>
+
+		{% if err_msg %}
+		    <div class="msg">{{ err_msg }}</div>
+		{% endif %}
+
+		{% if alert_msg %}
+		  <script>
+		    alert('{{ alert_msg }}');window.location='/logout';
+		  </script>
+		{% endif %}
+
+	</div>
+</div>
+</body>
+</html>

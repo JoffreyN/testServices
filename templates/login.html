@@ -1,0 +1,29 @@
+{% load static %} 
+	<link href="{% static 'icons/32.ico' %}" rel="icon" type="image/x-ico">
+<link rel="stylesheet" type="text/css" href="{%static 'css/account.css'%}"/>
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>登录 - TestServices</title>
+</head>
+<body>
+<div class="admin-ht">
+	<div class="adminBord">
+	<h1>TestServices</h1>
+	
+	<form method="post">
+	    {% csrf_token %}
+	    <input class="input" type="text" name="username" placeholder="用户名" required="required">
+	    <input class="input" type="password" name="password" placeholder="密码" required="required">
+	    <input class="submit" type="submit" value="登录">
+	</form>
+
+	{% if err_msg %}
+	    <div class="msg">{{ err_msg }}</div>
+	{% endif %}
+
+	</div>
+</div>
+</body>
+</html>

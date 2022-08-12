@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	{% load static %} 
+	<meta charset="utf-8" lang="zh">
+	<link href="{% static 'icons/32.ico' %}" rel="icon" type="image/x-ico">
+	<link rel="stylesheet" type="text/css" href="{%static 'css/index-vue.css'%}">
+	<link rel="stylesheet" type="text/css" href="{%static 'css/aside.css'%}">
+	<link rel="stylesheet" type="text/css" href="{%static 'css/fSelect.css'%}">
+	<title>TestServices 服务</title>
+	{% if alert_msg %}
+	  <script>
+	    alert('{{ alert_msg }}');window.location='{{ jumpto }}';
+	  </script>
+	{% endif %}
+</head>
+
+<body>
+
+<div class="global_toolbar">
+	<div data-id="global_toolbar"><button id="btn_aside_swich" class="task-list-button"></button></div>
+
+	<div class="toolbar_content">
+		<div class="css_column cart_column js_column" id="shop_cart">
+			<h4>快速跳转</h4>
+			<div class="more"><a target="_blank" href="http://10.0.2.83:8181"><button class="ant-btn ant-btn-cc btn_aside">MeterSphere 接口平台</button></a></div>
+			<!-- <div class="more"><a target="_blank" href="http://10.0.2.28:8000"><button class="ant-btn ant-btn-cc btn_aside">SOSOTest 接口平台</button></a></div> -->
+			<div class="more"><a target="_blank" href="http://10.0.2.83:8888/notebooks/Untitled.ipynb"><button class="ant-btn ant-btn-cc btn_aside">Jupyter</button></a></div>
+			<div class="more"><a target="_blank" href="http://10.0.2.28:8080"><button class="ant-btn ant-btn-cc btn_aside">Mac_Jenkins</button></a></div>
+			<div class="more"><a target="_blank" href="http://10.0.2.83:8080"><button class="ant-btn ant-btn-cc btn_aside">Mac_Test_Jenkins</button></a></div>
+			<div class="more"><a target="_blank" href="http://test-boss.****.****"><button class="ant-btn ant-btn-bb btn_aside">TEST BOSS系统</button></a></div>
+			<div class="more"><a target="_blank" href="http://uat-boss.****.****"><button class="ant-btn ant-btn-bb btn_aside">UAT BOSS系统</button></a></div>
+			<div class="more"><a target="_blank" href="http://10.0.2.83/report"><button class="ant-btn ant-btn-cc btn_aside">测试报告</button></a></div>
+			<div class="more"><a target="_blank" href="http://10.0.2.83/upload"><button class="ant-btn ant-btn-cc btn_aside">文件上传</button></a></div>
+		</div>
+	</div>
+</div>
+
+<div class="div_body" id="app">
+        <div style="margin-top: 10px;">
+            <!-- <h4>Grid #1</h4> -->
+            <grid-layout class="layout" :layout.sync="layout" :col-num="24" :row-height="1" :responsive="false" :is-draggable="true" :auto-size="true" :is-resizable="false" :vertical-compact="true" :use-css-transforms="true">
+                <grid-item v-for="item in layout" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :class="item.id" :key="item.i" @move="moveEvent" @moved="movedEvent" drag-ignore-from=".no-drag">
+
+                    <span class="text-title">{[item.t]}</span>
+                    <div v-html="item.ele" @click="clickFunc"></div>
+
+                </grid-item>
+            </grid-layout>
+        </div>
+
+	<div id="console">
+        <div style="margin-top:7px;">
+        	<div style="width:100%;height: 35px;padding-bottom: 5px;">
+				<table id="table-end">
+					<tr>
+						<td><button class="waves bg_color3 width_70" @click="clearPrint">清 除</button></td>
+						<td><a href="/index-old"><button class="waves bg_color3 width_70">返回旧版</button></a></td>
+						<td><button class="waves bg_color3 width_70" :class="{hide: isHide}" :disabled="isHide" @click="saveViewxy">保 存</button></td>
+						<td align="right">
+							<a href="/changepwd" id="user" title="点击修改密码">
+								{% if request.user.is_authenticated %}
+								{{ request.user }}
+								{% endif %}
+							</a>
+						</td>
+						<td align="right"><a href="/logout"><button class="waves bg_color3 width_70">退 出</button></a></td>
+					</tr>
+				</table>
+        	</div>
+
+            <grid-layout class="layout2" :layout="layout2" :col-num="1" :row-height="1" :is-draggable="false" :auto-size="true" :responsive="false" :is-resizable="false" :vertical-compact="true" :use-css-transforms="true">
+                <grid-item v-for="item in layout2" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :key="item.i">
+                    <!-- <span class="text-title">{[item.t]}</span><br> -->
+                    <div id='textarea'><textarea readOnly id='outText' v-model="output"></textarea></div>
+                </grid-item>
+            </grid-layout>
+        </div>
+	</div>
+
+</div>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	if (document.body.scrollWidth>1300){
+		document.getElementsByClassName("div_body")[0].style.width='2500px';
+	}else{
+		document.getElementsByClassName("div_body")[0].style.width='1250px';
+	}
+</script>
+<script src="https://unpkg.com/vue@2.6.14"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue-grid-layout@2.3.12/dist/vue-grid-layout.umd.js"></script> -->
+
+
+<script type="text/javascript" src="{%static 'js/vue-grid-layout.umd.js' %}"></script>
+<script type="text/javascript" src="{%static 'js/index-vue.js' %}"></script>
+<script type="text/javascript" src="{%static 'js/waves.js' %}"></script>
+<script type="text/javascript" src="{%static 'js/aside.js' %}"></script>
+<script type="text/javascript" src="{%static 'js/fSelect.js' %}"></script>
+<script>
+	$(function() {$('.selects').fSelect();});
+	$(function(){  
+		$('#money').bind('input propertychange', function() {  
+		    if (document.getElementById("money").value>=0){
+		    	document.getElementById("button4").innerHTML='存入并审核';
+		    } else {
+		    	document.getElementById("button4").innerHTML='提取并审核';
+		    };
+		});
+		});
+</script>
+</body>
+
+</html>

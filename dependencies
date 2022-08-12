@@ -1,0 +1,17 @@
+bs4
+Django==3.2
+django-cors-headers
+faker
+HTMLReport
+jsonpath
+lxml
+protobuf==3.14.0
+PyMySQL
+pymssql
+requests_toolbelt
+requests
+redis-py-cluster
+simplejson
+
+
+

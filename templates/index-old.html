@@ -1,0 +1,545 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	{% load static %} 
+	<meta charset="utf-8">
+	<link href="{% static 'icons/32.ico' %}" rel="icon" type="image/x-ico">
+	<link rel="stylesheet" type="text/css" href="{%static 'css/index.css'%}"/>
+	<link rel="stylesheet" type="text/css" href="{%static 'css/aside.css'%}">
+	<link rel="stylesheet" type="text/css" href="{%static 'css/fSelect.css'%}">
+	<script type="text/javascript" src="{%static 'js/brython.js' %}"></script>
+	<script type="text/javascript" src="{%static 'js/brython_stdlib.js' %}"></script>
+
+	<title>TestServices 服务</title>
+</head>
+
+<body onload="brython(1)">
+{% if alert_msg %}
+  <script>
+    alert('{{ alert_msg }}');window.location='{{ jumpto }}';
+  </script>
+{% endif %}
+<div class="global_toolbar">
+	<div data-id="global_toolbar"><button id="btn_aside_swich" class="task-list-button"></button></div>
+
+	<div class="toolbar_content">
+		<div class="css_column cart_column js_column" id="shop_cart">
+			<h4>快速跳转</h4>
+			<div class="more"><a target="_blank" href="http://10.0.2.83:8181"><button class="ant-btn ant-btn-cc btn_aside">MeterSphere 接口平台</button></a></div>
+			<!-- <div class="more"><a target="_blank" href="http://10.0.2.28:8000"><button class="ant-btn ant-btn-cc btn_aside">SOSOTest 接口平台</button></a></div> -->
+			<div class="more"><a target="_blank" href="http://10.0.2.83:8888/notebooks/Untitled.ipynb"><button class="ant-btn ant-btn-cc btn_aside">Jupyter</button></a></div>
+			<div class="more"><a target="_blank" href="http://10.0.2.28:8080"><button class="ant-btn ant-btn-cc btn_aside">Mac_Jenkins</button></a></div>
+			<div class="more"><a target="_blank" href="http://10.0.2.83:8080"><button class="ant-btn ant-btn-cc btn_aside">Mac_Test_Jenkins</button></a></div>
+			<div class="more"><a target="_blank" href="http://test-boss.****.****"><button class="ant-btn ant-btn-bb btn_aside">TEST BOSS系统</button></a></div>
+			<div class="more"><a target="_blank" href="http://uat-boss.****.****"><button class="ant-btn ant-btn-bb btn_aside">UAT BOSS系统</button></a></div>
+			<div class="more"><a target="_blank" href="http://10.0.2.83/report"><button class="ant-btn ant-btn-cc btn_aside">测试报告</button></a></div>
+			<div class="more"><a target="_blank" href="http://10.0.2.83/upload"><button class="ant-btn ant-btn-cc btn_aside">文件上传</button></a></div>
+		</div>
+	</div>
+</div>
+
+<div id="div_body">
+
+<div class="box half_width">
+	<div class="line"><span id="lineText3" class="line_text color2">重置密码</span></div>
+	<table>
+		<tr>
+			<td><label>重置方式:</label></td>
+			<td><label>选择环境:</label></td>
+			<td><label>输入账户:</label></td>
+			<td><label>输入新密码:</label></td>
+			<td><label></label></td>
+		</tr>
+		<tr>
+			<td class="select"><select id="resetType"><option value="APP">APP</option><option value="BOSS">BOSS</option><option value="CGF">陈广峰的Services</option></select></td>
+			<td class="select"><select id="env3"><option value="test">TEST</option><option value="uat">UAT</option><option value="dev">DEV</option></select></td>
+			<td><input type="text" class="input_text" id="name3" value="" placeholder="空格分隔" title="批量功能仅支持TTL账户"></td>
+			<td><input type="text" class="input_text" id="pword3" value="aaaa1111"></td>
+			<td><button id="button3" class="waves bg_color2">点击重置</button></td>
+		</tr>
+	</table>
+</div>
+
+<div class="box half_width">
+	<div class="line"><span id="lineText7" class="line_text color2">解锁账户</span></div>
+	<table>
+		<tr>
+			<!-- <td><label>选择类型:</label></td> -->
+			<td><label>选择环境:</label></td>
+			<td><label>输入账户:</label></td>
+			<td><label></label></td>
+		</tr>
+		<tr>
+			<!-- <td class="select"><select id="acc_type7"><option value="TTL">TTL</option><option value="ABC">ABC</option></select></td> -->
+			<td class="select"><select id="env7"><option value="test">TEST</option><option value="uat">UAT</option></select></td>
+			<td><input type="text" class="input_text" id="name7" placeholder="必填"></td>
+			<td><button id="button7" class="waves bg_color2">点击解锁</button></td>
+		</tr>
+	</table>
+</div>
+
+<div class="box fullwidth">
+	<div class="line"><span id="lineText4" class="line_text color2">资金存入|提取</span></div>
+	<table>
+		<tr>
+			<!-- <td><label>选择类型:</label></td> -->
+			<td><label>选择环境:</label></td>
+			<td><label>选择币种:</label></td>
+			<td><label>输入账户:</label></td>
+			<td><label>输入金额:</label></td>
+			<td><label></label></td>
+		</tr>
+		<tr>
+			<!-- <td class="select"><select id="acc_type4"><option value="TTL">TTL</option><option value="ABC">ABC</option></select></td> -->
+			<td class="select"><select id="env4"><option value="test">TEST</option><option value="uat">UAT</option><option value="dev">DEV</option></select></td>
+			<td class="select" id="currency"><select class="selects" multiple="multiple">
+				<option value="hkd">HKD</option>
+				<option value="usd">USD</option>
+				<option value="cny">CNY</option>
+			</select></td>
+			<td><input type="text" class="input_text" id="name4" value="" placeholder="空格分隔"></td>
+			<td><input type="number" class="input_text" id="money" value="100000" max="100000000" onblur="javascript:if (this.value>100000000){alert('金额不能大于1亿');this.value=100000000;}"></td>
+			<td><button class="waves bg_color2 m_right_60" id="button4">存入并审核</button></td>
+			<td><button id="button4_1" class="waves bg_color1" style="display: none;">全部删除</button></td>
+		</tr>
+	</table>
+</div>
+
+<div class="box half_width">
+	<div class="line"><span id="lineText9" class="line_text color2">股票|基金|债券|结构化产品 持仓</span></div>
+	<table>
+		<tr>
+			<!-- <td><label>选择类型:</label></td> -->
+			<td><label>选择环境:</label></td>
+			<td><label>市场类型:</label></td>
+			<td><label>输入账户:</label></td>
+			<td><label>产品代码:</label></td>
+			<td><label>输入数量:</label></td>
+		</tr>
+		<tr>
+			<!-- <td class="select"><select id="acc_type9"><option value="TTL">TTL</option><option value="ABC">ABC</option></select></td> -->
+			<td class="select"><select id="env9"><option value="test">TEST</option><option value="uat">UAT</option><option value="dev">DEV</option></select></td>
+			<td class="select">
+				<select id="markettype">
+					<option value="HKG">HKG</option>
+					<option value="USA">USA</option>
+					<option value="SHA">SHA</option>
+					<option value="SZA">SZA</option>
+          <option value="FUND">基金</option>
+          <option value="BOND">债券</option>
+          <option value="SPMK">结构化</option>
+				</select>
+			</td>
+			<td><input type="text" class="input_text" id="name9" value="" placeholder="空格分隔"></td>
+			<td><input type="text" class="input_text" id="stockcode" placeholder="00700" title="基金请输入 ProductCode ,如: MLU1342487771USD"></td>
+			<td><input type="number" class="input_text" id="stocknum" placeholder="10000"></td>
+			<td><button id="button9" class="waves bg_color2 m_right_60">点击执行</button></td>
+			<td><button id="button9_1" class="waves bg_color1" style="display: none;">全部删除</button></td>
+		</tr>
+	</table>
+</div>
+
+<div class="box half_width">
+	<div class="line"><span id="lineText15" class="line_text color6">银证入金</span></div>
+	<table>
+		<tr>
+			<td><label>选择环境:</label></td>
+			<td><label>银行类型:</label></td>
+			<td><label>选择币种:</label></td>
+			<td><label>证券账户:</label></td>
+			<td><label>银行账户号码:</label></td>
+			<td><label>输入金额:</label></td>
+			<td><label>交易日期:</label></td>
+			<td rowspan="2" class="td_checkbox">
+				<label><input type="checkbox" id="bankReg"><span id="bankReg_desc">自动登记</span></label><br>
+				<label><input type="checkbox" id="addBank" checked="checked" disabled><span id="addBank_desc" class="gray">自动添加结算卡</span></label><br>
+			</td>
+		</tr>
+		<tr>
+			<td class="select"><select id="env15"><option value="test">TEST</option><option value="uat">UAT</option><option value="dev">DEV</option></select></td>
+			<td class="select"><select id="bankName"><option value="港分银行">港分银行</option><option value="永隆银行">永隆银行</option><option value="民生银行">民生银行</option></select></td>
+			<td class="select" id="currency15"><select class="selects" multiple="multiple">
+				<option value="hkd">HKD</option>
+				<option value="usd">USD</option>
+				<option value="cny">CNY</option>
+			</select></td>
+			<td><input type="text" class="input_text" id="name15" value="" placeholder="必填"></td>
+			<td><input type="number" class="input_text" id="bankNum" placeholder="必填"></td>
+			<td><input type="number" class="input_text" id="money15" value="100000" max="100000000" onblur="javascript:if (this.value>100000000){alert('金额不能大于1亿');this.value=100000000;}"></td>
+			<td><input type="date" class="input_text" id="tradeDate" value="" placeholder="20211103"></td>
+			<td><button id="button15" class="waves bg_color6">点击执行</button></td>
+		</tr>
+	</table>
+</div>
+
+<div class="box fullwidth">
+	<div class="line"><span id="lineText5" class="line_text color2">查询测试账户</span></div>
+	<table>
+		<tr>
+			<!-- <td><label>选择类型:</label></td> -->
+			<td><label>选择环境:</label></td>
+			<td><label>查询数量:</label></td>
+			<td><label></label></td>
+		</tr>
+		<tr>
+			<!-- <td class="select"><select id="acc_type"><option value="TTL">TTL</option><option value="ABC">ABC</option></select></td> -->
+			<td class="select"><select id="env5"><option value="test">TEST</option><option value="uat">UAT</option></select></td>
+			<td><input type="number" class="input_text" id="input5" value="10"></td>
+			<td><button class="waves bg_color2" id="button5">点击查询</button></td>
+		</tr>
+	</table>
+</div>
+
+<div class="box fullwidth">
+	<div class="line"><span id="lineText16" class="line_text color6">添加新股</span></div>
+	<table>
+		<tr>
+			<td><label>选择环境:</label></td>
+			<td><label>新股名称:</label></td>
+			<td><label>新股代码:</label></td>
+			<td><label></label></td>
+		</tr>
+		<tr>
+			<td class="select"><select id="env16"><option value="test">TEST</option><option value="uat">UAT</option></select></td>
+			<td><input type="text" class="input_text" id="newStockname" placeholder="为空随机生成"></td>
+			<td><input type="number" class="input_text" id="newStockcode" placeholder="为空随机生成"></td>
+			<td><button class="waves bg_color6" id="button16">点击执行</button></td>
+		</tr>
+	</table>
+</div>
+
+<div class="box fullwidth">
+	<div class="line"><span id="lineText17" class="line_text color6">session 失效</span></div>
+	<table>
+		<tr>
+			<td><label>选择环境:</label></td>
+			<td><label>输入账户:</label></td>
+			<td><label>sessionID:</label></td>
+			<td><label></label></td>
+		</tr>
+		<tr>
+			<td class="select"><select id="env17"><option value="test">TEST</option><option value="uat">UAT</option></select></td>
+			<td><input type="text" class="input_text" id="name17" placeholder="必填"></td>
+			<td><input type="text" class="input_text" id="sessionid" placeholder="必填"></td>
+			<td><button class="waves bg_color6" id="button17">点击执行</button></td>
+		</tr>
+	</table>
+</div>
+
+<div class="box fullwidth">
+	<div class="line"><span id="lineText18" class="line_text color6">结单推送</span></div>
+	<table>
+		<tr>
+			<td><label>选择环境:</label></td>
+			<td><label>输入账户:</label></td>
+			<td><label>结单类型:</label></td>
+			<td><label>选择日期:</label></td>
+			<td><label></label></td>
+		</tr>
+		<tr>
+			<td class="select"><select id="env18"><option value="test">TEST</option><option value="uat">UAT</option></select></td>
+			<td><input type="text" class="input_text" id="name18" placeholder="必填"></td>
+			<td class="select"><select id="invoiceType"><option value="monthly">月结单</option><option value="day">日结单</option></select></td>
+			<td><input type="date" class="input_text" id="invoiceDate" value=""></td>
+			<td><button class="waves bg_color6 m_left_60" id="button18">点击执行</button></td>
+		</tr>
+	</table>
+</div>
+
+<div class="box fullwidth">
+	<div class="line"><span class="line_text color2">查询账户信息</span></div>
+	<table>
+		<tr>
+			<td><label>选择环境:</label></td>
+			<td><label>查询类型:</label></td>
+			<td><label>输入手机号/账户:</label></td>
+			<td><label>输入密码:</label></td>
+			<td><label></label></td>
+		</tr>
+		<tr>
+			<td class="select"><select id="env6"><option value="test">TEST</option><option value="uat">UAT</option></select></td>
+			<td class="select"><select id="queryType">
+				<option value="cardID">证件号</option>
+				<option value="infoJson">账户信息</option>
+				<option value="clientID">ClientID</option>
+			</select></td>
+			<td><input type="text" class="input_text" id="name6" placeholder="必填"></td>
+			<td><input type="text" class="input_text" id="pword6" value="aaaa1111"></td>
+			<td><button id="button6" class="waves bg_color2">点击查询</button></td>
+		</tr>
+	</table>
+</div>
+
+<div class="box fullwidth">
+	<div class="line"><span class="line_text color6">解绑证券账户</span></div>
+	<table>
+		<tr>
+			<td><label>选择环境:</label></td>
+			<td><label>输入账户:</label></td>
+			<td><label>输入密码:</label></td>
+			<td><label></label></td>
+		</tr>
+		<tr>
+			<td class="select"><select id="env12"><option value="test">TEST</option><option value="uat">UAT</option></select></td>
+			<td><input type="text" class="input_text" id="name12" placeholder="必填"></td>
+			<td><input type="text" class="input_text" id="pword12" value="aaaa1111"></td>
+			<td><button id="button12" class="waves bg_color6">点击解绑</button></td>
+		</tr>
+	</table>
+</div>
+
+<div class="box fullwidth">
+	<div class="line"><span class="line_text color1">港股串流灰度控制</span></div>
+	<table>
+		<tr>
+			<td><label>选择环境:</label></td>
+			<td><label>设置尾号放量:</label></td>
+			<td><label>添加白名单:</label></td>
+			<td><label>移除白名单:</label></td>
+			<td><label>切国内外IP:</label></td>
+		</tr>
+		<tr>
+			<td class="select"><select id="env2"><option value="test">TEST</option><option value="uat">UAT</option><option value="dev">DEV</option></select></td>
+			<td><input type="text" class="input_text" id="end" placeholder="0~9" title="设置手机尾号放量为 0 to n(包括0与 n) n∈[0,9];
+n 为 -1 时，关闭整个尾号放量规则。" value=""></td>
+			<td><input type="text" class="input_text" id="id_tel" placeholder="deviceId/phone" value=""></td>
+			<td><input type="text" class="input_text" id="id_tel2" placeholder="deviceId/phone" value=""></td>
+			<td class="select"><select id="mockIP"><option value="all-cn">国内IP</option><option value="all-global">国外IP</option></select></td>
+			<td><button id="button2_1" class="waves bg_color1 m_right_60">查看灰度</button></td>
+			<td><button id="button2_2" class="waves bg_color1">清空白名单</button></td>
+		</tr>
+		<tr>
+			<td><label></label></td>
+			<td><button id="button2_3" class="waves bg_color1 m_top_5">点击设置</button></td>
+			<td><button id="button2_4" class="waves bg_color1 m_top_5">点击添加</button></td>
+			<td><button id="button2_5" class="waves bg_color1 m_top_5">点击移除</button></td>
+			<td><button id="button2_6" class="waves bg_color1 m_top_5">点击切换</button></td>
+		</tr>
+	</table>
+</div>
+
+<!-- <div class="box fullwidth">
+	<div class="line"><span class="line_text color2">TTL设备灰度控制</span></div>
+	<table>
+		<tr>
+			<td><label>选择环境:</label></td>
+			<td><label>灰度类型:</label></td>
+			<td><label>选择状态:</label></td>
+			<td><label>输入UUID:</label></td>
+			<td><label>备注:</label></td>
+		</tr>
+		<tr>
+			<td class="select"><select id="env12"><option value="test">TEST</option><option value="uat">UAT</option></select></td>
+			<td class="select"><select id="grayType"><option value="WHITE">WHITE</option><option value="BLACK">BLACK</option></select></td>
+			<td class="select"><select id="status"><option value="0">0</option><option value="1">1</option></select></td>
+			<td><input type="text" class="input_text" id="uuid" placeholder="必填"></td>
+			<td><input type="text" class="input_text" id="remark" value="" placeholder="选填"></td>
+			<td><button id="button12_1" class="waves bg_color2 m_right_60">新增/修改</button></td>
+			<td><button id="button12_2" class="waves bg_color2 m_right_60">查看灰度</button></td>
+		</tr>
+	</table>
+</div> -->
+
+<div class="box half_width">
+	<div class="line"><span id="lineText11" class="line_text color2">CMS内开户</span></div>
+	<table>
+		<tr>
+			<td><label>选择环境:</label></td>
+			<td><label>账户类型:</label></td>
+			<td><label>证件类型:</label></td>
+			<td><label>输入手机号:</label></td>
+			<td><label>输入aecode:</label></td>
+			<td><label></label></td>
+		</tr>
+		<tr>
+			<td class="select"><select id="env11"><option value="test">TEST</option><option value="uat">UAT</option><option value="dev">DEV</option></select></td>
+			<td class="select"><select id="acc_type11"><option value="1">个人账户</option><option value="2">法团客户</option><option value="3">金融机构户</option></select></td>
+			<td class="select">
+				<select id="cardType">
+					<option value="China ID">中国身份证</option>
+					<option value="Hongkong ID">香港身份证</option>
+					<!-- <option value="Hongkong Permanent ID">香港永久性居民身份证</option> -->
+					<option value="EPP">港澳通行证</option>
+					<!-- <option value="ID">其他居民身份证</option> -->
+					<option value="Passport">中国护照</option>
+					<!-- <option value="IncorporationNo">公司注册号码</option> -->
+					<!-- <option value="RegistrationNo">商业登记号码</option> -->
+					<!-- <option value="Military ID">军人证</option> -->
+					<!-- <option value="Residence Permit">居住证</option> -->
+					<!-- <option value="Guardian Identification Doc">监护人证件</option> -->
+					<!-- <option value="Police ID">武警身份证</option> -->
+					<!-- <option value="Temporary Residence Permit">暂住证</option> -->
+				</select>
+			</td>
+			<td><input type="text" class="input_text" id="tel11" value="" placeholder="为空则随机生成"></td>
+			<!-- <td><input type="text" class="input_text" id="email" value="" placeholder="为空则随机生成"></td> -->
+			<td><input type="text" class="input_text" id="aecode" value="988"></td>
+			<td><button id="button11" class="waves bg_color2">点击开户</button></td>
+		</tr>
+	</table>
+</div>
+
+<div class="box half_width">
+	<div class="line"><span id="lineText14" class="line_text color2">APP 开户</span></div>
+	<table>
+		<tr>
+			<!-- <td><label>选择类型:</label></td> -->
+			<td><label>选择环境:</label></td>
+			<td><label>输入手机号:</label></td>
+			<td><label>输入邮箱:</label></td>
+			<td rowspan="2" class="td_checkbox">
+				<label><input type="checkbox" id="margin" checked="checked"><span id="margin_desc">需要孖展账户</span></label><br>
+				<label><input type="checkbox" id="active"><span id="active_desc">需要审核并激活</span></label><br>
+				<label><input type="checkbox" id="setPwd" checked="checked" disabled><span class="gray" id="setPwd_desc">需要修改账户密码</span></label>
+			</td>
+			<td rowspan="2" class="td_checkbox">
+				<label><input type="checkbox" id="setPwdTel" checked="checked" disabled><span class="gray" id="setPwdTel_desc">需要设置手机账户密码</span></label><br>
+				<label><input type="checkbox" id="w8" checked="checked" disabled><span class="gray" id="w8_desc">需要提交w8</span></label><br>
+				<label><input type="checkbox" id="market" checked="checked" disabled><span class="gray" id="market_desc">需要开通市场</span></label>
+			</td>
+			<td rowspan="2"><button id="button14" class="waves bg_color2">点击开户</button></td>
+			<td rowspan="2"><span class="tips">&nbsp;&nbsp;&nbsp;&nbsp;Tips: <br>&nbsp;&nbsp;&nbsp;&nbsp;此方式为直接请求接口开户，<br>&nbsp;&nbsp;&nbsp;&nbsp;不受前端逻辑限制。</span></td>
+		</tr>
+		<tr>
+			<!-- <td class="select"><select id="acc_type14"><option value="TTL">TTL</option><option value="ABC">ABC</option></select></td> -->
+			<td class="select"><select id="env14"><option value="test">TEST</option><option value="uat">UAT</option></select></td>
+			<td><input type="text" class="input_text" id="tel14" value="" placeholder="为空则随机生成"></td>
+			<td><input type="text" class="input_text" id="emai14" value="" placeholder="为空则随机生成"></td>
+		</tr>
+	</table>
+</div>
+
+<div class="box fullwidth">
+	<div class="line"><span class="line_text color4">其它</span></div>
+	<table>
+		<tr>
+			<td><label>选择环境:</label></td>
+			<td><label>查询kafka日志:</label></td>
+			<td><label>解析proto数据:</label></td>
+			<td><label>添加静态资产:</label></td>
+			<td><label>开通市场:</label></td>
+		</tr>
+		<tr>
+			<td class="select"><select id="env8"><option value="test">TEST</option><option value="uat">UAT</td>
+			<td><input type="text" class="input_text" id="num8" placeholder="最新n条" value="5"></td>
+			<td><input type="text" class="input_text" id="data_pb2" value="" placeholder="输入16进制数据" title="例: 03E9 0000 0000 0001 B411 0000 0066 6E59 B834 469E 26FF 4D78 2030 E271 9252 D53C B2A4 0000 0000 0000 0000 2264 0801 1222 675F 3066 6164 6466 6134 3130 3136 3431 3338 3933 3837 3838 3238 3134 6438 3437 3539 1A2F 5F5F 7665 7274 782E 7773 2E61 3434 6533 6637 382D 3931 6266 2D34 3239 302D 6137 3636 2D38 6533 6164 3463 3230 3236 3538 FFFF FFFF FFFF FFFF FF01 4A00"></td>
+			<td><input type="text" class="input_text" id="name8" placeholder="账户号"></td>
+			<td><input type="text" class="input_text" id="name8_3" placeholder="账户号"></td>
+		</tr>
+		<tr>
+			<td><label></label></td>
+			<td><button id="button8_1" class="waves bg_color4 m_top_5">点击查询</button></td>
+			<td><button id="button8" class="waves bg_color4 m_top_5">点击解析</button></td>
+			<td><button id="button8_2" class="waves bg_color4 m_top_5">点击执行</button></td>
+			<td><button id="button8_3" class="waves bg_color4 m_top_5">点击执行</button></td>
+		</tr>
+	</table>
+</div>
+
+<div class="box half_width">
+	<div class="line"><span id="lineText13" class="line_text color5">UI自动化控制</span></div>
+	<table>
+		<tr>
+			<td><label>查询进程:</label></td>
+			<td><label>Appium服务:</label></td>
+			<td><label>WDA服务:</label></td>
+			<td><label>UI自动化:</label></td>
+			<td><label>终止进程:</label></td>
+		</tr>
+		<tr>
+			<td><input type="text" class="input_text" id="processName" value="" placeholder="进程名称"></td>
+			<td class="select" id="appium">
+				<select class="selects fappium" multiple="multiple">
+					<option value="4723">4723</option>
+					<option value="4725">4725</option>
+					<option value="4727">4727</option>
+					<option value="4729">4729</option>
+					<option value="4731">4731</option>
+					<option value="4733">4733</option>
+					<option value="4735">4735</option>
+					<option value="4737">4737</option>
+				</select>
+			</td>
+			<td class="select" id="wda">
+				<select class="selects fwda" multiple="multiple">
+					<option value="8100">iPhone 11 Pro Max</option>
+					<option value="8101">iPhone 11 Pro</option>
+					<option value="8102">iPhone 11</option>
+					<!-- <option value="13_6_ProMax">8103_13_6_ProMax</option> -->
+				</select>
+			</td>
+			<td class="select" id="ui_auto">
+				<select class="selects fui_auto" multiple="multiple">
+					<option value="runTest_104.sh">runTest_104.sh</option>
+					<option value="runTest_105.sh">runTest_105.sh</option>
+					<option value="runTest_106.sh">runTest_106.sh</option>
+					<!-- <option value="runTest_107_abc.sh">runTest_107_abc.sh</option> -->
+					<option value="runTest_iOS.sh">runTest_iOS.sh</option>
+					<option value="runTest_iOSp.sh">runTest_iOSp.sh</option>
+					<option value="runTest_iOSpm.sh">runTest_iOSpm.sh</option>
+					<!-- <option value="runTest_iOSpm_abc.sh">runTest_iOSpm_abc.sh</option> -->
+				</select>
+			</td>
+			<td><input type="text" class="input_text" id="processID" value="" placeholder="进程ID,空格分隔"></td>
+		</tr>
+		<tr>
+			<td><button id="button13_1" class="waves bg_color5 m_top_5">点击查询</button></td>
+			<td>
+				<button id="button13_2_stop" class="waves bg_color5 m_top_5 width_45">停止</button>
+				<button id="button13_2_start" class="waves bg_color5 m_top_5 width_45">启动</button>
+			</td>
+			<td>
+				<button id="button13_3_stop" class="waves bg_color5 m_top_5 width_45">停止</button>
+				<button id="button13_3_start" class="waves bg_color5 m_top_5 width_45">启动</button>
+			</td>
+			<td><button id="button13_4" class="waves bg_color5 m_top_5">启动测试</button></td>
+			<td><button id="button13_5" class="waves bg_color5 m_top_5">点击终止</button></td>
+		</tr>
+	</table>
+</div>
+
+
+<div id="console">
+	<div class="line"><span class="line_text color3">控制台输出</span></div>
+
+	<table id="table-end">
+		<tr>
+			<td><button class="waves bg_color3 width_70" id="button0">清 除</button></td>
+			<td><a href="/index"><button class="waves bg_color3 width_80">新版界面</button></a></td>
+			<td align="right">
+				<a href="/changepwd" id="user" title="点击修改密码">
+					{% if request.user.is_authenticated %}
+					{{ request.user }}
+					{% endif %}
+				</a>
+			</td>
+			<td align="right"><a href="/logout"><button class="waves bg_color3 width_70">退 出</button></a></td>
+		</tr>
+	</table>
+		
+	<div id="textarea"><textarea readOnly id="outText"></textarea></div>
+</div>
+
+</div>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+<script type="text/python" src="{%static 'js/my_brython.js' %}"></script>
+<script type="text/javascript" src="{%static 'js/waves.js' %}"></script>
+<script type="text/javascript" src="{%static 'js/aside.js' %}"></script>
+<script src="{%static 'js/fSelect.js' %}"></script>
+<script>
+	$(function() {$('.selects').fSelect();});
+	$(function(){  
+		$('#money').bind('input propertychange', function() {  
+		    if (document.getElementById("money").value>=0){
+		    	document.getElementById("button4").innerHTML='存入并审核';
+		    } else {
+		    	document.getElementById("button4").innerHTML='提取并审核';
+		    };
+		});
+		})
+</script>
+</body>
+
+</html>
