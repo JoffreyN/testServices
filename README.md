@@ -9,4 +9,4 @@ pip3 install -r dependencies
 ```
 
 ## 预览
-![](/readme/tmp.jpg "预览")
+![](/readme/tmp.png "预览")
